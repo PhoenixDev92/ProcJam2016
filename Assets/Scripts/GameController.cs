@@ -11,6 +11,13 @@ public class GameController : MonoBehaviour {
     private MazeGeneration2 mazeGenerator;
     private MazeRendering mazeRenderer;
     private bool destinationReached = false;
+    private bool gameStarted = false;
+    private float timeSinceGameStart = 0;
+
+    public float TimeSinceGameStart
+    {
+        get { return timeSinceGameStart; }
+    }
 
     void Awake()
     {
@@ -41,8 +48,15 @@ public class GameController : MonoBehaviour {
             player.gameObject.SetActive(true);
 
             player.Initialized = true;
+            gameStarted = true;
         }
-	}
+
+
+        if (gameStarted)
+        {
+            timeSinceGameStart += Time.deltaTime;
+        }
+    }
 
     // Used to indicate that the player has reached the destination
     public void PlayerReachedDestination()

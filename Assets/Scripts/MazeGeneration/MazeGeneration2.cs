@@ -161,7 +161,7 @@ public class MazeGeneration2 : MonoBehaviour {
             frontierCells.RemoveAt(randomIdx);
             frontierCells.AddRange(GetFrontierCellAtDistance2(selectedFrontierCell.rowIndex, selectedFrontierCell.columnIndex, Cell.CellState.BLOCKED));
 
-            //yield return new WaitForSeconds(0.001f);
+            yield return new WaitForSeconds(0.001f);
         }
 
         mazeRenderer.MazeGenerationComplete();
