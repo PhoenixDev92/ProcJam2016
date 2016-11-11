@@ -21,6 +21,32 @@ public class MazeGeneration2 : MonoBehaviour {
 
     // Use this for initialization
     void Start() {
+        GenerateNewMaze();
+    }
+
+    // Generates a new maze
+    public void GenerateNewMaze()
+    {
+        mazeRenderer.placeTiles(rows, columns);
+
+        // Initializes the grid
+        grid = new Cell[rows, columns];
+        for (int r = 0; r < rows; r++)
+        {
+            for (int c = 0; c < columns; c++)
+            {
+                grid[r, c] = new Cell();
+            }
+        }
+
+        StartCoroutine(MazeGenerationCoroutine());
+    }
+
+    // Generates a new maze, alternate method to allow for the specification of a new maze
+    public void GenerateNewMaze(int numRows, int numCols)
+    {
+        rows = numRows;
+        columns = numCols;
         mazeRenderer.placeTiles(rows, columns);
 
         // Initializes the grid
@@ -135,7 +161,7 @@ public class MazeGeneration2 : MonoBehaviour {
             frontierCells.RemoveAt(randomIdx);
             frontierCells.AddRange(GetFrontierCellAtDistance2(selectedFrontierCell.rowIndex, selectedFrontierCell.columnIndex, Cell.CellState.BLOCKED));
 
-            yield return new WaitForSeconds(0.001f);
+            //yield return new WaitForSeconds(0.001f);
         }
 
         mazeRenderer.MazeGenerationComplete();

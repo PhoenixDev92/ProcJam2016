@@ -8,11 +8,13 @@ public class GameController : MonoBehaviour {
     [SerializeField]
     private GameObject maze;
 
+    private MazeGeneration2 mazeGenerator;
     private MazeRendering mazeRenderer;
-    private bool playerInitilaized = false;
+    private bool destinationReached = false;
 
     void Awake()
     {
+        mazeGenerator = maze.GetComponent<MazeGeneration2>();
         mazeRenderer = maze.GetComponent<MazeRendering>();
     }
 
@@ -23,7 +25,7 @@ public class GameController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	    if (mazeRenderer.IsMazeGenerated && !playerInitilaized)
+	    if (mazeRenderer.IsMazeGenerated && !player.Initialized)
         {
             // Move the player's start position forward on the z axis
             Vector3 playerStartPosition = mazeRenderer.StartingPosition;
@@ -38,7 +40,37 @@ public class GameController : MonoBehaviour {
             player.MazeRenderer = mazeRenderer;
             player.gameObject.SetActive(true);
 
-            playerInitilaized = true;
+            player.Initialized = true;
         }
 	}
+
+    // Used to indicate that the player has reached the destination
+    public void PlayerReachedDestination()
+    {
+        if (destinationReached)
+        {
+            return;
+        }
+
+        destinationReached = true;
+
+        Debug.Log("Level Complete");
+        mazeRenderer.Reset();
+        player.Reset();
+        mazeGenerator.GenerateNewMaze();
+
+        destinationReached = false;
+    }
+
+    // Returns the number of times that the player has moved
+    public int GetPlayerMoves()
+    {
+        return player.TimesMoved;
+    }
+
+    // Returns the minimum amount of moves required to solve the maze
+    public int GetMinMoves()
+    {
+        return mazeRenderer.MinMovesToDestination;
+    }
 }

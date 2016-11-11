@@ -6,12 +6,31 @@ public class Player : MonoBehaviour {
     [SerializeField]
     private float movementSpeed;
 
+    private bool initialized = false;
+
     private float movementIncrementX = 1;
     private float movementIncrementY = 1;
     private MazeRendering mazeRenderer;
 
     private int gridPositionRow;
     private int gridPositionCol;
+
+    private Vector3 prevTargetPosition = Vector3.zero;
+
+    // Counts the player's moves
+    private int timesMoved = 0;
+
+    private float moveCoolDown = 0.2f;
+    private float elapsedTime = 0;
+
+    public bool Initialized
+    {
+        get { return initialized; }
+        set
+        {
+            initialized = value;
+        }
+    }
 
     public float MovementIncrementX
     {
@@ -38,6 +57,11 @@ public class Player : MonoBehaviour {
         set { gridPositionCol = value; }
     }
 
+    public int TimesMoved
+    {
+        get { return timesMoved; }
+    }
+
     // Use this for initialization
     void Start () {
 	    
@@ -45,38 +69,80 @@ public class Player : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (!initialized)
+        {
+            return;
+        }
 
-        Vector3 positionBeforeInput = transform.position;
+        elapsedTime += Time.deltaTime;
+
         int tempRow = gridPositionRow;
         int tempCol = gridPositionCol;
 
         // Movement input
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetButton("Up"))
         {
-            tempRow--;
+            if (elapsedTime >= moveCoolDown)
+            {
+                tempRow--;
+                elapsedTime = 0;
+            }
         }
-        else if (Input.GetKeyDown(KeyCode.DownArrow))
+        else if (Input.GetButton("Down"))
         {
-            tempRow++;
+            if (elapsedTime >= moveCoolDown)
+            {
+                tempRow++;
+                elapsedTime = 0;
+            }
         }
-        else if (Input.GetKeyDown(KeyCode.LeftArrow))
+        else if (Input.GetButton("Left"))
         {
-            tempCol--;
+            if (elapsedTime >= moveCoolDown)
+            {
+                tempCol--;
+                elapsedTime = 0;
+            }              
         }
-        else if (Input.GetKeyDown(KeyCode.RightArrow))
+        else if (Input.GetButton("Right"))
         {
-            tempCol++;
+            if (elapsedTime >= moveCoolDown)
+            {
+                tempCol++;
+                elapsedTime = 0;
+            }  
         }
 
         // Attempt to move the player
-        Vector3 targetPostion = mazeRenderer.CalculatePlayerGridPosition(tempRow, tempCol, transform.position);
-        transform.position = Vector3.Lerp(transform.position, targetPostion, movementSpeed * Time.deltaTime);
+        Vector3 currentPosition = transform.position;
+        Vector3 targetPostion = mazeRenderer.CalculatePlayerGridPosition(tempRow, tempCol, gridPositionRow, gridPositionCol, currentPosition);
 
         // If the move was successful
-        if (transform.position != positionBeforeInput)
+        if (targetPostion != currentPosition && mazeRenderer.VerifyCell(tempRow, tempCol))
         {
+            // If the grid position changed
+            if (gridPositionRow != tempRow || gridPositionCol != tempCol)
+            {
+                timesMoved++;
+            }
+
             gridPositionRow = tempRow;
             gridPositionCol = tempCol;
         }
+
+        prevTargetPosition = targetPostion;
+
+        // Move the player
+        transform.position = Vector3.Lerp(transform.position, targetPostion, movementSpeed * Time.deltaTime);
+    }
+
+    // Resets the player for a new level
+    public void Reset()
+    {
+        initialized = false;
+        prevTargetPosition = Vector3.zero;
+        timesMoved = 0;
+
+        this.gameObject.SetActive(false);
     }
 }
