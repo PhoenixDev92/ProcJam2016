@@ -7,9 +7,8 @@ public class Player : MonoBehaviour {
     private float movementSpeed;
 
     private bool initialized = false;
+    private bool canMove = false;
 
-    private float movementIncrementX = 1;
-    private float movementIncrementY = 1;
     private MazeRendering mazeRenderer;
 
     private int gridPositionRow;
@@ -26,20 +25,12 @@ public class Player : MonoBehaviour {
     public bool Initialized
     {
         get { return initialized; }
-        set
-        {
-            initialized = value;
-        }
+        set { initialized = value; }
     }
 
-    public float MovementIncrementX
+    public bool CanMove
     {
-        set { movementIncrementX = value; }
-    }
-
-    public float MovementIncrementY
-    {
-        set { movementIncrementY = value; }
+        set { canMove = value; }
     }
 
     public MazeRendering MazeRenderer
@@ -80,37 +71,40 @@ public class Player : MonoBehaviour {
         int tempCol = gridPositionCol;
 
         // Movement input
-        if (Input.GetButton("Up"))
+        if (canMove)
         {
-            if (elapsedTime >= moveCoolDown)
+            if (Input.GetButton("Up"))
             {
-                tempRow--;
-                elapsedTime = 0;
+                if (elapsedTime >= moveCoolDown)
+                {
+                    tempRow--;
+                    elapsedTime = 0;
+                }
             }
-        }
-        else if (Input.GetButton("Down"))
-        {
-            if (elapsedTime >= moveCoolDown)
+            else if (Input.GetButton("Down"))
             {
-                tempRow++;
-                elapsedTime = 0;
+                if (elapsedTime >= moveCoolDown)
+                {
+                    tempRow++;
+                    elapsedTime = 0;
+                }
             }
-        }
-        else if (Input.GetButton("Left"))
-        {
-            if (elapsedTime >= moveCoolDown)
+            else if (Input.GetButton("Left"))
             {
-                tempCol--;
-                elapsedTime = 0;
-            }              
-        }
-        else if (Input.GetButton("Right"))
-        {
-            if (elapsedTime >= moveCoolDown)
+                if (elapsedTime >= moveCoolDown)
+                {
+                    tempCol--;
+                    elapsedTime = 0;
+                }
+            }
+            else if (Input.GetButton("Right"))
             {
-                tempCol++;
-                elapsedTime = 0;
-            }  
+                if (elapsedTime >= moveCoolDown)
+                {
+                    tempCol++;
+                    elapsedTime = 0;
+                }
+            }
         }
 
         // Attempt to move the player
@@ -140,6 +134,7 @@ public class Player : MonoBehaviour {
     public void Reset()
     {
         initialized = false;
+        canMove = false;
         prevTargetPosition = Vector3.zero;
         timesMoved = 0;
 

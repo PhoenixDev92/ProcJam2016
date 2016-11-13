@@ -131,7 +131,6 @@ public class MazeRendering : MonoBehaviour {
 
         Pathfinding pathFinder = new Pathfinding();
         minMovesToDestination = pathFinder.FindShortestPath(renderGrid, renderRows, renderColumns, startingGridRow, startingGridCol, highestRow, highestCol);
-        Debug.Log(minMovesToDestination);
 
         // Set the flag to indicate that maze generation is complete
         isMazeGenerated = true;
@@ -189,6 +188,7 @@ public class MazeRendering : MonoBehaviour {
         highestRow = int.MinValue;
         highestCol = int.MinValue;
         isMazeGenerated = false;
+        minMovesToDestination = -1;
 
         // Destroy existing GameObjects
         for (int r = 0; r < renderRows; r++)

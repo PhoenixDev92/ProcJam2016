@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(GameMode))]
 public class GameController : MonoBehaviour {
 
     [SerializeField]
@@ -8,19 +9,35 @@ public class GameController : MonoBehaviour {
     [SerializeField]
     private GameObject maze;
 
+    // Reference to the GameMode script
+    private GameMode gameMode;
+
     private MazeGeneration2 mazeGenerator;
     private MazeRendering mazeRenderer;
     private bool destinationReached = false;
     private bool gameStarted = false;
     private float timeSinceGameStart = 0;
+    private int totalMazesSolved = 0;
+    private bool readyForNewMaze = false;
 
     public float TimeSinceGameStart
     {
         get { return timeSinceGameStart; }
     }
 
+    public int TotalMazesSolved
+    {
+        get { return totalMazesSolved; }
+    }
+
+    public bool ReadyForNewMaze
+    {
+        get { return readyForNewMaze; }
+    }
+
     void Awake()
     {
+        gameMode = GetComponent<GameMode>();
         mazeGenerator = maze.GetComponent<MazeGeneration2>();
         mazeRenderer = maze.GetComponent<MazeRendering>();
     }
@@ -42,13 +59,13 @@ public class GameController : MonoBehaviour {
             player.transform.localScale = mazeRenderer.ObjectCalculatedScale;
             player.GridPositionRow = mazeRenderer.StartingGridRow;
             player.GridPositionCol = mazeRenderer.StartingGridCol;
-            player.MovementIncrementX = mazeRenderer.ColIncrement;
-            player.MovementIncrementY = mazeRenderer.RowIncrement;
             player.MazeRenderer = mazeRenderer;
             player.gameObject.SetActive(true);
 
             player.Initialized = true;
+            player.CanMove = true;
             gameStarted = true;
+            readyForNewMaze = true;
         }
 
 
@@ -67,11 +84,20 @@ public class GameController : MonoBehaviour {
         }
 
         destinationReached = true;
+        totalMazesSolved++;
+        player.CanMove = false;
+        GenerateNewMaze();
+    }
 
-        Debug.Log("Level Complete");
+    // Initiates the creation of a new maze
+    public void GenerateNewMaze()
+    {
+        readyForNewMaze = false;
+        int newMazeSize = gameMode.GetNextMazeSize();
+
         mazeRenderer.Reset();
         player.Reset();
-        mazeGenerator.GenerateNewMaze();
+        mazeGenerator.GenerateNewMaze(newMazeSize, newMazeSize);
 
         destinationReached = false;
     }
@@ -86,5 +112,10 @@ public class GameController : MonoBehaviour {
     public int GetMinMoves()
     {
         return mazeRenderer.MinMovesToDestination;
+    }
+
+    public void PauseStateChanged (bool paused)
+    {
+        player.CanMove = !paused;
     }
 }
