@@ -11,6 +11,8 @@ public class GameController : MonoBehaviour {
 
     // Reference to the GameMode script
     private GameMode gameMode;
+    // Reference to the AudioSource
+    private AudioSource audioSrc;
 
     private MazeGeneration2 mazeGenerator;
     private MazeRendering mazeRenderer;
@@ -38,14 +40,10 @@ public class GameController : MonoBehaviour {
     void Awake()
     {
         gameMode = GetComponent<GameMode>();
+        audioSrc = GetComponent<AudioSource>();
         mazeGenerator = maze.GetComponent<MazeGeneration2>();
         mazeRenderer = maze.GetComponent<MazeRendering>();
     }
-
-	// Use this for initialization
-	void Start () {
-	    
-	}
 	
 	// Update is called once per frame
 	void Update () {
@@ -83,6 +81,7 @@ public class GameController : MonoBehaviour {
             return;
         }
 
+        audioSrc.Play();
         destinationReached = true;
         totalMazesSolved++;
         player.CanMove = false;

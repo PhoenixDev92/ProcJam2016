@@ -129,6 +129,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 82000012483824508, guid: 4188781c1bb04574ca2ab3fc35046067,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4188781c1bb04574ca2ab3fc35046067, type: 2}
   m_IsPrefabParent: 0
@@ -206,61 +211,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 438666217}
---- !u!1 &521086920
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 521086923}
-  - 114: {fileID: 521086922}
-  - 114: {fileID: 521086921}
-  m_Layer: 0
-  m_Name: GameOptions
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &521086921
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 521086920}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1300cd0e62b1af44b731d7f1097280d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentMode: 0
-  randomMazeSize: 0
-  mazeSize: 0
---- !u!114 &521086922
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 521086920}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 005abb157968e3e4298719185d4f1dd7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &521086923
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 521086920}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 783.98834, y: 468.83432, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
 --- !u!1 &569880699
 GameObject:
   m_ObjectHideFlags: 0
@@ -516,7 +466,7 @@ GameObject:
   - 222: {fileID: 1022398320}
   - 114: {fileID: 1022398319}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Credits
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -537,8 +487,8 @@ RectTransform:
   m_RootOrder: 3
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 174.2, y: 22}
-  m_SizeDelta: {x: 334.4, y: 23.6}
+  m_AnchoredPosition: {x: 219.3, y: 29.7}
+  m_SizeDelta: {x: 421.3, y: 46.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1022398319
 MonoBehaviour:
@@ -566,13 +516,15 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 2
     m_MaxSize: 40
-    m_Alignment: 4
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: By Victor Soudien for ProcJam 2016
+  m_Text: 'By Victor Soudien for ProcJam 2016
+
+    Audio: Find The Answer - www.playonloop.com'
 --- !u!222 &1022398320
 CanvasRenderer:
   m_ObjectHideFlags: 0
