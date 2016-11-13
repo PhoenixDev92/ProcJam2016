@@ -14,7 +14,7 @@ Platform assembly: V:\GitHub\ProcJam2016\A-Maze-Thing_Data\Managed\UnityEngine.U
 Loading V:\GitHub\ProcJam2016\A-Maze-Thing_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
 Platform assembly: V:\GitHub\ProcJam2016\A-Maze-Thing_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
 Loading V:\GitHub\ProcJam2016\A-Maze-Thing_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
-- Completed reload, in  0.040 seconds
+- Completed reload, in  0.042 seconds
 Platform assembly: V:\GitHub\ProcJam2016\A-Maze-Thing_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: V:\GitHub\ProcJam2016\A-Maze-Thing_Data\Managed\System.dll (this message is harmless)
 desktop: 2560x1080 60Hz; virtual: 2560x1080 at 0,0
