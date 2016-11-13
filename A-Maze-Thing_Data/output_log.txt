@@ -14,9 +14,26 @@ Platform assembly: V:\GitHub\ProcJam2016\A-Maze-Thing_Data\Managed\UnityEngine.U
 Loading V:\GitHub\ProcJam2016\A-Maze-Thing_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
 Platform assembly: V:\GitHub\ProcJam2016\A-Maze-Thing_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
 Loading V:\GitHub\ProcJam2016\A-Maze-Thing_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
-- Completed reload, in  0.042 seconds
+- Completed reload, in  0.049 seconds
 Platform assembly: V:\GitHub\ProcJam2016\A-Maze-Thing_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: V:\GitHub\ProcJam2016\A-Maze-Thing_Data\Managed\System.dll (this message is harmless)
 desktop: 2560x1080 60Hz; virtual: 2560x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 0.748370 ms
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 3.912518 ms
+
+Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 354.
+Total: 0.258274 ms (FindLiveObjects: 0.016782 ms CreateObjectMapping: 0.010808 ms MarkObjects: 0.226985 ms  DeleteObjects: 0.003128 ms)
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.761454 ms
+
+Unloading 20 unused Assets to reduce memory usage. Loaded Objects now: 239.
+Total: 0.214185 ms (FindLiveObjects: 0.024746 ms CreateObjectMapping: 0.007964 ms MarkObjects: 0.154168 ms  DeleteObjects: 0.026168 ms)
+
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: 30d4 -> priority: 1 
+  Thread -> id: 3150 -> priority: 1 
