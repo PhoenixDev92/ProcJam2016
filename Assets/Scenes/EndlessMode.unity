@@ -612,12 +612,12 @@ Prefab:
     - target: {fileID: 224000012894530946, guid: de6ab07595ea3884eb20043b16a7ef3c,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 88
+      value: 81.9
       objectReference: {fileID: 0}
     - target: {fileID: 224000012894530946, guid: de6ab07595ea3884eb20043b16a7ef3c,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -94
+      value: -94.9
       objectReference: {fileID: 0}
     - target: {fileID: 114000013732253598, guid: de6ab07595ea3884eb20043b16a7ef3c,
         type: 2}
@@ -683,6 +683,16 @@ Prefab:
         type: 2}
       propertyPath: m_SizeDelta.x
       value: 189.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000010549039002, guid: de6ab07595ea3884eb20043b16a7ef3c,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 20.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000010549039002, guid: de6ab07595ea3884eb20043b16a7ef3c,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 34.9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: de6ab07595ea3884eb20043b16a7ef3c, type: 2}
@@ -870,11 +880,6 @@ Prefab:
       propertyPath: maze
       value: 
       objectReference: {fileID: 1469965278}
-    - target: {fileID: 114000011186986058, guid: b05d94a425f886544ab03f38b9fd1671,
-        type: 2}
-      propertyPath: randomMazeSize
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b05d94a425f886544ab03f38b9fd1671, type: 2}
   m_IsPrefabParent: 0
